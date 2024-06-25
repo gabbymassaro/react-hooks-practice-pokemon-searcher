@@ -14,6 +14,21 @@ function PokemonPage() {
       .then((data) => setPokemonList(data))
   }, [])
 
+  function onNewPokemonSubmit(newPokemon) {
+    fetch("http://localhost:3001/pokemon", {
+      method: "POST",
+      body: JSON.stringify(newPokemon),
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setPokemonList([...pokemonList, data])
+      })
+  }
+
   function handleSearchInput(input) {
     setSearch(input)
   }
@@ -28,7 +43,7 @@ function PokemonPage() {
     <Container>
       <h1>Pokemon Searcher</h1>
       <br />
-      <PokemonForm />
+      <PokemonForm addNewPokemon={onNewPokemonSubmit} />
       <br />
       <Search search={search} onSearch={handleSearchInput} />
       <br />
