@@ -1,14 +1,17 @@
-import React from "react";
+import React from "react"
 
-function Search() {
+function Search({ search, onSearch }) {
+  const handleChange = (event) => {
+    onSearch(event.target.value)
+  }
   return (
     <div className="ui search">
       <div className="ui icon input">
-        <input className="prompt" />
+        <input className="prompt" value={search} onChange={handleChange} />
         <i className="search icon" />
       </div>
     </div>
-  );
+  )
 }
 
-export default Search;
+export default Search
