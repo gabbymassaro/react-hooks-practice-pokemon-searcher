@@ -1,10 +1,8 @@
 import React, { useState } from "react"
 import { Form } from "semantic-ui-react"
-import { v4 as uuid } from "uuid"
 
 function PokemonForm({ addNewPokemon }) {
   const [formInput, setFormInput] = useState({
-    id: uuid(),
     name: "",
     hp: "",
     sprites: {
